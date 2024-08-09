@@ -8,6 +8,7 @@ const URL = "https://ciclopoli.theacare.de/camera";
 const App = () => {
   const [image, setImage] = useState(null);
   const handleWebViewMessage = (message) => {
+    window.ReactNativeWebView.postMessage('handling onMessage');
     if (!message?.imageDataUrl) {
       console.log("Received a message without imageDataUrl");
       return;

@@ -5,6 +5,9 @@ const WebView = ({ url, onMessage }) => {
     const handleMessage = (event) => {
       // Check if the message is from the expected origin
       if (event.origin !== new URL(url).origin) {
+        if(window.ReactNativeWebView !== undefined){
+          window.ReactNativeWebView.postMessage('diferent origin');
+        }
         return;
       }
       onMessage(event.data);
