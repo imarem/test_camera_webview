@@ -1,35 +1,8 @@
 import "./App.css";
 import React, { useState } from "react";
-import WebView from "./WebView";
-
-// const URL = "<THEACARE_URL>/camera";
-const URL = "https://ciclopoli.theacare.de/camera";
-
 const App = () => {
-  const [image, setImage] = useState(null);
-  const handleWebViewMessage = (message) => {
-    window.ReactNativeWebView.postMessage('handling onMessage');
-    if (!message?.imageDataUrl) {
-      console.log("Received a message without imageDataUrl");
-      return;
-    }
-    console.log(message.imageDataUrl)
-    setImage(message.imageDataUrl);
-    console.log(window)
-    if(window.ReactNativeWebView !== undefined){
-      window.ReactNativeWebView.postMessage(message.imageDataUrl);
-    }
-    
-    console.log(
-      "Received imageObj from WebView:",
-      message.width,
-      message.height,
-      message.imageDataUrl.slice(0, 20)
-    );
-  };
-
   return (
-    <div style={{ width: "100%", height: "50vh" }}>
+    <div style={{ width: "100%", height: "100vh" }}>
       <a
         className="App-link"
         href="https://reactjs.org"
@@ -38,14 +11,7 @@ const App = () => {
       >
         Learn React
       </a>
-      {image && (
-        <img
-          src={image}
-          alt=""
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
-        />
-      )}
-      {!image && <WebView url={URL} onMessage={handleWebViewMessage} />}
+      <button onClick={() => {window.ReactNativeWebView.postMessage('Hello')}}>send to RN webview</button>
     </div>
   );
 };
