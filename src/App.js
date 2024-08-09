@@ -11,7 +11,7 @@ const App = () => {
       >
         Learn React
       </a>
-      <button onClick={() => {window.ReactNativeWebView.postMessage('Hello')}}>send to RN webview</button>
+      <button onClick={() => {window.ReactNativeWebView.postMessage('Hello', '*')}}>send to RN webview</button>
     </div>
   );
 };
